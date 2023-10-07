@@ -54,6 +54,6 @@ Telegram.WebApp.setHeaderColor('secondary_bg_color');
 setViewportData();
 Telegram.WebApp.onEvent('viewportChanged', setViewportData);
 
-Telegram.WebApp.onEvent('themeChanged', function () {
-    document.body.setAttribute('style', '--bg-color:' + Telegram.WebApp.backgroundColor);
-});
+// Telegram.WebApp.onEvent('themeChanged', function () {
+//     document.body.setAttribute('style', '--bg-color:' + Telegram.WebApp.backgroundColor);
+// });
