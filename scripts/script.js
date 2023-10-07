@@ -2,7 +2,7 @@
 Telegram.WebApp.ready();
 
 // Event occurs whenever theme settings are changed in the user's Telegram app (including switching to night mode).
-Telegram.WebApp.onEvent('themeChanged', function() {
+Telegram.WebApp.onEvent('themeChanged', function () {
     document.documentElement.className = Telegram.WebApp.colorScheme;
 });
 
@@ -12,7 +12,7 @@ Telegram.WebApp.MainButton.setParams({
 });
 Telegram.WebApp.MainButton.onClick(function () {
     Telegram.WebApp.showAlert('Main Button was clicked')
-});	
+});
 Telegram.WebApp.MainButton.show();
 
 // Function to call showPopup API
@@ -21,10 +21,10 @@ function showPopup() {
         title: 'Title',
         message: 'Some message',
         buttons: [
-            {id: 'link', type: 'default', text: 'Open ton.org'},
-            {type: 'cancel'},
+            { id: 'link', type: 'default', text: 'Open ton.org' },
+            { type: 'cancel' },
         ]
-    }, function(btn) {
+    }, function (btn) {
         if (btn === 'link') {
             Telegram.WebApp.openLink('https://ton.org/');
         }
@@ -42,7 +42,7 @@ function toggleMainButton() {
 
 function setViewportData() {
     var sizeEl = document.getElementById('viewport-params-size');
-    sizeEl.innerText = 'width: ' + window.innerWidth + ' x ' + 
+    sizeEl.innerText = 'width: ' + window.innerWidth + ' x ' +
         'height: ' + Telegram.WebApp.viewportStableHeight;
 
     var expandEl = document.querySelector('#viewport-params-expand');
@@ -54,6 +54,6 @@ Telegram.WebApp.setHeaderColor('secondary_bg_color');
 setViewportData();
 Telegram.WebApp.onEvent('viewportChanged', setViewportData);
 
-Telegram.WebApp.onEvent('themeChanged', function() {
+Telegram.WebApp.onEvent('themeChanged', function () {
     document.body.setAttribute('style', '--bg-color:' + Telegram.WebApp.backgroundColor);
 });

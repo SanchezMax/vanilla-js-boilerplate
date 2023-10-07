@@ -87,6 +87,7 @@ function addressAutocomplete(containerElement, callback, options) {
             });
 
             promise.then((data) => {
+                closeDropDownList(); // ?
                 // here we get address suggestions
                 currentItems = data.results;
 
@@ -127,20 +128,20 @@ function addressAutocomplete(containerElement, callback, options) {
         var autocompleteItemsElement = containerElement.querySelector(".autocomplete-items");
         if (autocompleteItemsElement) {
             var itemElements = autocompleteItemsElement.getElementsByTagName("div");
-            if (e.keyCode == 40) {
+            if (e.code == 40) {
                 e.preventDefault();
                 /*If the arrow DOWN key is pressed, increase the focusedItemIndex variable:*/
                 focusedItemIndex = focusedItemIndex !== itemElements.length - 1 ? focusedItemIndex + 1 : 0;
                 /*and and make the current item more visible:*/
                 setActive(itemElements, focusedItemIndex);
-            } else if (e.keyCode == 38) {
+            } else if (e.code == 38) {
                 e.preventDefault();
 
                 /*If the arrow UP key is pressed, decrease the focusedItemIndex variable:*/
                 focusedItemIndex = focusedItemIndex !== 0 ? focusedItemIndex - 1 : focusedItemIndex = (itemElements.length - 1);
                 /*and and make the current item more visible:*/
                 setActive(itemElements, focusedItemIndex);
-            } else if (e.keyCode == 13) {
+            } else if (e.code == 13) {
                 /* If the ENTER key is pressed and value as selected, close the list*/
                 e.preventDefault();
                 if (focusedItemIndex > -1) {
@@ -148,10 +149,9 @@ function addressAutocomplete(containerElement, callback, options) {
                 }
             }
         } else {
-            if (e.keyCode == 40) {
+            if (e.code == 40) {
                 /* Open dropdown list again */
-                var event = document.createEvent('Event');
-                event.initEvent('input', true, true);
+                var event = new Event('input', { bubbles: true, cancelable: true });
                 inputElement.dispatchEvent(event);
             }
         }
@@ -199,8 +199,7 @@ function addressAutocomplete(containerElement, callback, options) {
             closeDropDownList();
         } else if (!containerElement.querySelector(".autocomplete-items")) {
             // open dropdown list again
-            var event = document.createEvent('Event');
-            event.initEvent('input', true, true);
+            var event = new Event('input', { bubbles: true, cancelable: true });
             inputElement.dispatchEvent(event);
         }
     });
@@ -209,6 +208,7 @@ function addressAutocomplete(containerElement, callback, options) {
 addressAutocomplete(document.getElementById("autocomplete-container"), (data) => {
     console.log("Selected option: ");
     console.log(data["city"]);
+    getWeather(data["city"]);
 }, {
     placeholder: "Enter an address here"
 });
