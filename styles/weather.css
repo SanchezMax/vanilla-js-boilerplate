@@ -28,8 +28,8 @@ body .container {
 }
 
 .container {
-    width: 90%;
-    max-width: 1200px;
+    width: 200%;
+    max-width: 600px;
     margin: 0 auto;
     padding: 0 15px;
     transition: opacity 0.3s linear;
@@ -40,21 +40,22 @@ body .container {
 }
 
 .container .cities {
-    display: grid;
+    display: block ruby;
     padding: 0%;
-    grid-gap: 32px 20px;
-    grid-template-columns: repeat(1, 1fr);
+    /* grid-gap: 32px 20px;
+    grid-template-columns: repeat(1, 1fr); */
 }
 
 .container .city {
     position: relative;
-    padding: 40px 10%;
+    padding: 40px 15% 40px 10%;
+    margin-right: 15px;
     border-radius: 20px;
     background: var(--tg-theme-secondary-bg-color);
     color: var(--tg-theme-hint-color);
 }
 
-.container .city::after {
+/* .container .city::after {
     content: '';
     width: 90%;
     height: 50px;
@@ -65,7 +66,7 @@ body .container {
     opacity: 0.3;
     border-radius: 20px;
     background: var(--tg-theme-button-text-color);
-}
+} */
 
 .container figcaption {
     margin-top: 10px;
@@ -96,7 +97,6 @@ body .container {
 }
 
 .container .city-icon {
-    margin-top: 10px;
     width: 100px;
     height: 100px;
 }

@@ -96,7 +96,7 @@ function getWeather(city) {
                                     <span>${city.name}</span>
                                     <sup>${city.country}</sup>
                                 </h2>
-                                <p class="city-date">${timeConverter(dt)}</p>
+                                <h4 class="city-date">${timeConverter(dt)}</h4>
                                 <div class="city-temp">${Math.round(main.temp)}<sup>°${unit}</sup></div>
                                 <figure>
                                     <div class="circled">
@@ -148,7 +148,11 @@ function toggleShowWeather() {
 }
 
 function timeConverter(timestamp) {
-    var time = new Date(timestamp * 1000).toLocaleTimeString("en-UK")
-    var date = new Date(timestamp * 1000).toLocaleDateString("en-UK")
+    var time = new Date(timestamp * 1000).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })
+    const options = {
+        month: "long",
+        day: "numeric",
+      };
+    var date = new Date(timestamp * 1000).toLocaleDateString("en-UK", options)
     return time + '   ' + date
 }

@@ -1,9 +1,11 @@
 .autocomplete-container {
-    margin-bottom: 20px;
-    padding: 10px 0 0 0;
     background-color: var(--tg-theme-secondary-bg-color);
     opacity: 1;
     transition: opacity 0.3s linear;
+}
+
+.autocomplete-container .select {
+    background-color: var(--tg-theme-secondary-bg-color);
 }
 
 .autocomplete-container.hidden {
@@ -11,6 +13,7 @@
 }
 
 .input-container {
+    padding-top: 15px;
     display: flex;
     position: relative;
 }
