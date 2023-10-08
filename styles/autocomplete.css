@@ -1,5 +1,11 @@
 .autocomplete-container {
     margin-bottom: 20px;
+    opacity: 1;
+    transition: opacity 0.3s linear;
+}
+
+.autocomplete-container.hidden {
+    opacity: 0;
 }
 
 .input-container {

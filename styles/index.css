@@ -11,7 +11,8 @@ body {
 a {
     color: var(--tg-theme-link-color);
 }
-#viewport {
+
+/* #viewport {
     position: fixed;
     left: 0;
     right: 0;
@@ -50,4 +51,4 @@ a {
 }
 #viewport-params-expand {
     top: 30px;
-}
+} */

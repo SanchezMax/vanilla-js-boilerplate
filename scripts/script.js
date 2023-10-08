@@ -49,6 +49,11 @@ function setViewportData() {
     expandEl.innerText = 'Is Expanded: ' + (Telegram.WebApp.isExpanded ? 'true' : 'false');
 }
 
+function togglePage() {
+    toggleShowAutocomplete()
+    toggleShowWeather()
+}
+
 Telegram.WebApp.setHeaderColor('secondary_bg_color');
 
 setViewportData();

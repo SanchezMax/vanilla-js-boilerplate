@@ -67,3 +67,18 @@ function getWeather(city) {
             Telegram.WebApp.showAlert('Please search for a valid city 😩');
         });
 }
+
+function toggleShowWeather() {
+    var el = document.getElementById('ajax-section')
+    if (el.classList.contains('hidden')) {
+        el.style.display = ''
+        setTimeout(function () {
+            el.classList.remove('hidden')
+        }, 300);
+    } else {
+        el.classList.add('hidden')
+        setTimeout(function () {
+            el.style.display = 'none'
+        }, 300);
+    }
+}
