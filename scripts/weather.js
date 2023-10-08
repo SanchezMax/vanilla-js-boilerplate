@@ -48,7 +48,7 @@ function getWeather(city) {
 
             const { cnt, list, city } = data;
             for (let index = 0; index < cnt; index++) {
-                const { main, weather } = list[index]
+                const { dt, main, weather } = list[index]
                 const icon = `https://openweathermap.org/img/wn/${weather[0]["icon"]}@2x.png`;
                 const li = document.createElement("li");
                 li.classList.add("city");
@@ -57,13 +57,8 @@ function getWeather(city) {
                         <span>${city.name}</span>
                         <sup>${city.country}</sup>
                     </h2>
-                    <div style="display: block ruby">
-                        <div class="city-temp">${Math.round(main.temp)}<sup>°C</sup></div>
-                        <div style="padding: 0 15%">
-                            <p>18:48</p>
-                            <p>08.10.2023</p>
-                        </div>
-                    </div>
+                    <p class="city-date">${timeConverter(dt)}</p>
+                    <div class="city-temp">${Math.round(main.temp)}<sup>°C</sup></div>
                     <figure>
                         <img class="city-icon" src="${icon}" alt="${weather[0]["description"]}">
                         <figcaption>${weather[0]["description"]}</figcaption>
@@ -116,4 +111,10 @@ function toggleShowWeather() {
             el.style.display = 'none'
         }, 300);
     }
+}
+
+function timeConverter(timestamp) {
+    var time = new Date(timestamp * 1000).toLocaleTimeString("en-UK")
+    var date = new Date(timestamp * 1000).toLocaleDateString("en-UK")
+    return time + '   ' + date
 }

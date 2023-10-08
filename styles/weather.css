@@ -23,7 +23,7 @@ ul {
 
 body .container {
     font: 1rem/1.3 "Roboto", sans-serif;
-    background: var(--tg-theme-secondary-bg-color);
+    background: var(--tg-theme-bg-color);
     color: var(--tg-theme-text-color);
 }
 
@@ -50,7 +50,7 @@ body .container {
     position: relative;
     padding: 40px 10%;
     border-radius: 20px;
-    background: var(--tg-theme-button-text-color);
+    background: var(--tg-theme-secondary-bg-color);
     color: var(--tg-theme-hint-color);
 }
 
@@ -82,6 +82,10 @@ body .container {
 
 .container .city sup {
     font-size: 0.5em;
+}
+
+.container .city-date {
+    color: var(--tg-theme-hint-color);
 }
 
 .container .city-name sup {
