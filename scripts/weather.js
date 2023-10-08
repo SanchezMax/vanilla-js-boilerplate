@@ -38,53 +38,86 @@ function getWeather(city) {
         }
     }
 
+    const forecast_select = document.getElementById('forecast-select').value;
+    const units_select = document.getElementById('units-select').value;
+    var unit;
+    switch (units_select) {
+        case 'metric':
+            unit = 'C';
+            break;
+        case 'imperial':
+            unit = 'F';
+            break;
+        case 'standard':
+            unit = 'k';
+            break;
+        default:
+            break;
+    }
+
     //ajax here
-    // const url = `https://api.openweathermap.org/data/2.5/weather?q=${inputVal}&appid=${apiKey}&units=metric`;
-    const url = `https://api.openweathermap.org/data/2.5/forecast?q=${inputVal}&appid=${apiKey}&units=metric`;
+    const url = `https://api.openweathermap.org/data/2.5/${forecast_select}?q=${inputVal}&appid=${apiKey}&units=${units_select}`;
 
     fetch(url)
         .then(response => response.json())
         .then(data => {
-
-            const { cnt, list, city } = data;
-            for (let index = 0; index < cnt; index++) {
-                const { dt, main, weather } = list[index]
-                const icon = `https://openweathermap.org/img/wn/${weather[0]["icon"]}@2x.png`;
-                const li = document.createElement("li");
-                li.classList.add("city");
-                const markup = `
-                    <h2 class="city-name" data-name="${city.name},${city.country}">
-                        <span>${city.name}</span>
-                        <sup>${city.country}</sup>
-                    </h2>
-                    <p class="city-date">${timeConverter(dt)}</p>
-                    <div class="city-temp">${Math.round(main.temp)}<sup>°C</sup></div>
-                    <figure>
-                        <img class="city-icon" src="${icon}" alt="${weather[0]["description"]}">
-                        <figcaption>${weather[0]["description"]}</figcaption>
-                    </figure>
-                `;
-                li.innerHTML = markup;
-                listOfCities.appendChild(li);
+            if (data["cod"] == "200") {
+                switch (forecast_select) {
+                    case 'weather':
+                        const { main, name, sys, weather } = data;
+                        const icon = `https://openweathermap.org/img/wn/${weather[0]["icon"]}@2x.png`;
+                        const li = document.createElement("li");
+                        li.classList.add("city");
+                        const markup = `
+                            <h2 class="city-name" data-name="${name},${sys.country}">
+                                <span>${name}</span>
+                                <sup>${sys.country}</sup>
+                            </h2>
+                            <div class="city-temp">${Math.round(main.temp)}<sup>°${unit}</sup></div>
+                            <figure>
+                                <div class="circled">
+                                    <img class="city-icon" src="${icon}" alt="${weather[0]["description"]}">
+                                </div
+                                <figcaption>${weather[0]["description"]}</figcaption>
+                            </figure>
+                        `;
+                        li.innerHTML = markup;
+                        listOfCities.appendChild(li);
+                        break;
+                    case 'forecast':
+                        const { cnt, list, city } = data;
+                        for (let index = 0; index < cnt; index++) {
+                            const { dt, main, weather } = list[index]
+                            const icon = `https://openweathermap.org/img/wn/${weather[0]["icon"]}@2x.png`;
+                            const li = document.createElement("li");
+                            li.classList.add("city");
+                            const markup = `
+                                <h2 class="city-name" data-name="${city.name},${city.country}">
+                                    <span>${city.name}</span>
+                                    <sup>${city.country}</sup>
+                                </h2>
+                                <p class="city-date">${timeConverter(dt)}</p>
+                                <div class="city-temp">${Math.round(main.temp)}<sup>°${unit}</sup></div>
+                                <figure>
+                                    <div class="circled">
+                                        <img class="city-icon" src="${icon}" alt="${weather[0]["description"]}">
+                                    </div
+                                    <figcaption>${weather[0]["description"]}</figcaption>
+                                </figure>
+                            `;
+                            li.innerHTML = markup;
+                            listOfCities.appendChild(li);
+                        }
+                    default:
+                        break;
+                }
+            } else {
+                Telegram.WebApp.showAlert('Please search for a valid city 😩');
+                let inputElement = document.querySelector('input');
+                inputElement.value = '';
+                clearWeather();
+                togglePage();
             }
-
-            // const { main, name, sys, weather } = data;
-            // const icon = `https://openweathermap.org/img/wn/${weather[0]["icon"]}@2x.png`;
-            // const li = document.createElement("li");
-            // li.classList.add("city");
-            // const markup = `
-            //     <h2 class="city-name" data-name="${name},${sys.country}">
-            //         <span>${name}</span>
-            //         <sup>${sys.country}</sup>
-            //     </h2>
-            //     <div class="city-temp">${Math.round(main.temp)}<sup>°C</sup></div>
-            //     <figure>
-            //         <img class="city-icon" src="${icon}" alt="${weather[0]["description"]}">
-            //         <figcaption>${weather[0]["description"]}</figcaption>
-            //     </figure>
-            // `;
-            // li.innerHTML = markup;
-            // listOfCities.appendChild(li);
         })
         .catch(() => {
             Telegram.WebApp.showAlert('Please search for a valid city 😩');
@@ -109,6 +142,7 @@ function toggleShowWeather() {
         el.classList.add('hidden')
         setTimeout(function () {
             el.style.display = 'none'
+            clearWeather();
         }, 300);
     }
 }

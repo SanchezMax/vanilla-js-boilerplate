@@ -208,6 +208,8 @@ function addressAutocomplete(containerElement, callback, options) {
 function toggleShowAutocomplete() {
     var el = document.getElementById('autocomplete-container')
     if (el.classList.contains('hidden')) {
+        let inputElement = document.querySelector('input');
+        inputElement.value = '';
         setTimeout(function () {
             el.style.display = ''
         }, 300);

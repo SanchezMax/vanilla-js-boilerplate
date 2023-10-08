@@ -10,3 +10,17 @@ body {
 a {
     color: var(--tg-theme-link-color);
 }
+
+div.select {
+    padding: 10px 0;
+}
+
+.circled {
+    height: 100px;
+    width: 100px;
+    background-color: var(--tg-theme-button-color);
+    display: flex;
+    align-items: center;
+    border-radius: 50%;
+    justify-content: center;
+}

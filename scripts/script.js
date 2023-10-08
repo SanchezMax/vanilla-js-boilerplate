@@ -15,9 +15,6 @@ Telegram.WebApp.MainButton.onClick(function () {
 });
 
 Telegram.WebApp.BackButton.onClick(function () {
-    let inputElement = document.querySelector('input');
-    inputElement.value = '';
-    clearWeather();
     togglePage();
 });
 
