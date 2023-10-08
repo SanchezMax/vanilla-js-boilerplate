@@ -21,14 +21,14 @@
     padding: 0 31px 0 7px;
     width: calc(100% - 40px);
 
-    border: 1px solid rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--tg-theme-hint-color);
     border-radius: 5px;
 
     font-size: 14px;
 }
 
-input::placeholder {
-    color: #000;
+.input-container input::placeholder {
+    color: var(--tg-theme-hint-color);
 }
 
 .autocomplete-items {
@@ -38,11 +38,11 @@ input::placeholder {
     right: 0;
 
     /* background-color: #fff; */
-    border: 1px solid rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--tg-theme-hint-color);
     border-radius: 5px;
     overflow: hidden;
 
-    box-shadow: 0px 2px 10px 2px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 2px 10px 2px var(--tg-theme-hint-color);
     z-index: 99;
 }
 
@@ -53,16 +53,16 @@ input::placeholder {
 
 .autocomplete-items div:hover {
     /*when hovering an item:*/
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: var(--tg-theme-hint-color);
 }
 
 .autocomplete-items .autocomplete-active {
     /*when navigating through the items using the arrow keys:*/
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: var(--tg-theme-hint-color);
 }
 
 .clear-button {
-    color: rgba(0, 0, 0, 0.4);
+    color: var(--tg-theme-hint-color);
     cursor: pointer;
 
     position: absolute;
@@ -79,5 +79,5 @@ input::placeholder {
 }
 
 .clear-button:hover {
-    color: rgba(0, 0, 0, 0.6);
+    color: var(--tg-theme-text-color);
 }
