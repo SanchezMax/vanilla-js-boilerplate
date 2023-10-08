@@ -208,10 +208,12 @@ function addressAutocomplete(containerElement, callback, options) {
 function toggleShowAutocomplete() {
     var el = document.getElementById('autocomplete-container')
     if (el.classList.contains('hidden')) {
-        el.style.display = ''
+        setTimeout(function () {
+            el.style.display = ''
+        }, 300);
         setTimeout(function () {
             el.classList.remove('hidden')
-        }, 300);
+        }, 600);
     } else {
         el.classList.add('hidden')
         setTimeout(function () {
@@ -224,6 +226,7 @@ addressAutocomplete(document.getElementById("autocomplete-container"), (data) =>
     console.log("Selected option: ");
     console.log(data["city"]);
     getWeather(data["city"]);
+    togglePage()
 }, {
     placeholder: "Enter an address here"
 });

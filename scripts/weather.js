@@ -1,14 +1,13 @@
 /*SEARCH BY USING A CITY NAME (e.g. athens) OR A COMMA-SEPARATED CITY NAME ALONG WITH THE COUNTRY CODE (e.g. athens,gr)*/
-const list = document.querySelector(".ajax-section .cities");
+const listOfCities = document.querySelector(".container .cities");
 /*SUBSCRIBE HERE FOR API KEY: https://home.openweathermap.org/users/sign_up*/
 const apiKey = "5e7c127c2e697398a02d432425c678a9";
-
 
 function getWeather(city) {
     let inputVal = city
 
     //check if there's already a city
-    const listItems = list.querySelectorAll(".ajax-section .city");
+    const listItems = listOfCities.querySelectorAll(".container .city");
     const listItemsArray = Array.from(listItems);
 
     if (listItemsArray.length > 0) {
@@ -40,41 +39,77 @@ function getWeather(city) {
     }
 
     //ajax here
-    const url = `https://api.openweathermap.org/data/2.5/weather?q=${inputVal}&appid=${apiKey}&units=metric`;
+    // const url = `https://api.openweathermap.org/data/2.5/weather?q=${inputVal}&appid=${apiKey}&units=metric`;
+    const url = `https://api.openweathermap.org/data/2.5/forecast?q=${inputVal}&appid=${apiKey}&units=metric`;
 
     fetch(url)
         .then(response => response.json())
         .then(data => {
-            const { main, name, sys, weather } = data;
-            const icon = `https://openweathermap.org/img/wn/${weather[0]["icon"]}@2x.png`;
-            const li = document.createElement("li");
-            li.classList.add("city");
-            const markup = `
-                <h2 class="city-name" data-name="${name},${sys.country}">
-                    <span>${name}</span>
-                    <sup>${sys.country}</sup>
-                </h2>
-                <div class="city-temp">${Math.round(main.temp)}<sup>°C</sup></div>
-                <figure>
-                    <img class="city-icon" src="${icon}" alt="${weather[0]["description"]}">
-                    <figcaption>${weather[0]["description"]}</figcaption>
-                </figure>
-            `;
-            li.innerHTML = markup;
-            list.appendChild(li);
+
+            const { cnt, list, city } = data;
+            for (let index = 0; index < cnt; index++) {
+                const { main, weather } = list[index]
+                const icon = `https://openweathermap.org/img/wn/${weather[0]["icon"]}@2x.png`;
+                const li = document.createElement("li");
+                li.classList.add("city");
+                const markup = `
+                    <h2 class="city-name" data-name="${city.name},${city.country}">
+                        <span>${city.name}</span>
+                        <sup>${city.country}</sup>
+                    </h2>
+                    <div style="display: block ruby">
+                        <div class="city-temp">${Math.round(main.temp)}<sup>°C</sup></div>
+                        <div style="padding: 0 15%">
+                            <p>18:48</p>
+                            <p>08.10.2023</p>
+                        </div>
+                    </div>
+                    <figure>
+                        <img class="city-icon" src="${icon}" alt="${weather[0]["description"]}">
+                        <figcaption>${weather[0]["description"]}</figcaption>
+                    </figure>
+                `;
+                li.innerHTML = markup;
+                listOfCities.appendChild(li);
+            }
+
+            // const { main, name, sys, weather } = data;
+            // const icon = `https://openweathermap.org/img/wn/${weather[0]["icon"]}@2x.png`;
+            // const li = document.createElement("li");
+            // li.classList.add("city");
+            // const markup = `
+            //     <h2 class="city-name" data-name="${name},${sys.country}">
+            //         <span>${name}</span>
+            //         <sup>${sys.country}</sup>
+            //     </h2>
+            //     <div class="city-temp">${Math.round(main.temp)}<sup>°C</sup></div>
+            //     <figure>
+            //         <img class="city-icon" src="${icon}" alt="${weather[0]["description"]}">
+            //         <figcaption>${weather[0]["description"]}</figcaption>
+            //     </figure>
+            // `;
+            // li.innerHTML = markup;
+            // listOfCities.appendChild(li);
         })
         .catch(() => {
             Telegram.WebApp.showAlert('Please search for a valid city 😩');
         });
 }
 
+function clearWeather() {
+    const listItems = listOfCities.querySelectorAll(".container .city");
+    listItems.forEach(element => {
+        element.parentNode.removeChild(element)
+    });
+}
+
 function toggleShowWeather() {
-    var el = document.getElementById('ajax-section')
+    var el = document.getElementById('container')
     if (el.classList.contains('hidden')) {
         el.style.display = ''
         setTimeout(function () {
             el.classList.remove('hidden')
-        }, 300);
+        }, 600);
     } else {
         el.classList.add('hidden')
         setTimeout(function () {

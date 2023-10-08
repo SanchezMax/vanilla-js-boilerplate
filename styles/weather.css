@@ -10,7 +10,7 @@
     --orange: #ff8c00;
 }
 
-* .ajax-section figure {
+* .container figure {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -27,37 +27,33 @@ ul {
     list-style: none;
 }
 
-body .ajax-section {
+body .container {
     font: 1rem/1.3 "Roboto", sans-serif;
     background: var(--bg_main);
     color: var(--text_dark);
-    padding: 70px;
+    /* padding: 70px; */
 }
 
 .container {
-    width: 100%;
+    width: 80%;
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 15px;
-}
-
-.ajax-section {
-    margin: 70px 0 20px;
-    opacity: 1;
     transition: opacity 0.3s linear;
 }
 
-.ajax-section.hidden {
+.container.hidden {
     opacity: 0;
 }
 
-.ajax-section .cities {
+.container .cities {
     display: grid;
+    padding: 0%;
     grid-gap: 32px 20px;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(1, 1fr);
 }
 
-.ajax-section .city {
+.container .city {
     position: relative;
     padding: 40px 10%;
     border-radius: 20px;
@@ -65,7 +61,7 @@ body .ajax-section {
     color: var(--text_med);
 }
 
-.ajax-section .city::after {
+.container .city::after {
     content: '';
     width: 90%;
     height: 50px;
@@ -78,68 +74,32 @@ body .ajax-section {
     background: var(--text_light);
 }
 
-.ajax-section figcaption {
+.container figcaption {
     margin-top: 10px;
     text-transform: uppercase;
     letter-spacing: 0.05em;
 }
 
-.ajax-section .city-temp {
+.container .city-temp {
     font-size: 5rem;
     font-weight: bold;
     margin-top: 10px;
     color: var(--text_dark);
 }
 
-.ajax-section .city sup {
+.container .city sup {
     font-size: 0.5em;
 }
 
-.ajax-section .city-name sup {
+.container .city-name sup {
     padding: 0.2em 0.6em;
     border-radius: 30px;
     color: var(--text_light);
     background: var(--orange);
 }
 
-.ajax-section .city-icon {
+.container .city-icon {
     margin-top: 10px;
     width: 100px;
     height: 100px;
-}
-
-/* MQ
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
-@media screen and (max-width: 1000px) {
-    body {
-        padding: 30px;
-    }
-
-    .ajax-section .cities {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-
-@media screen and (max-width: 700px) {
-    .ajax-section .city-temp {
-        font-size: 3rem;
-    }
-
-    .ajax-section {
-        margin-top: 20px;
-    }
-
-    .ajax-section .cities {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media screen and (max-width: 500px) {
-    body {
-        padding: 15px;
-    }
-
-    .ajax-section .cities {
-        grid-template-columns: repeat(1, 1fr);
-    }
 }

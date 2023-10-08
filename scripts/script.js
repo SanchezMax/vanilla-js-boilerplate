@@ -8,28 +8,18 @@ Telegram.WebApp.onEvent('themeChanged', function () {
 
 // Show main button
 Telegram.WebApp.MainButton.setParams({
-    text: 'Main Button'
+    text: 'Save city'
 });
 Telegram.WebApp.MainButton.onClick(function () {
-    Telegram.WebApp.showAlert('Main Button was clicked')
+    // Telegram.WebApp.showAlert('Main Button was clicked')
 });
-Telegram.WebApp.MainButton.show();
 
-// Function to call showPopup API
-function showPopup() {
-    Telegram.WebApp.showPopup({
-        title: 'Title',
-        message: 'Some message',
-        buttons: [
-            { id: 'link', type: 'default', text: 'Open ton.org' },
-            { type: 'cancel' },
-        ]
-    }, function (btn) {
-        if (btn === 'link') {
-            Telegram.WebApp.openLink('https://ton.org/');
-        }
-    });
-};
+Telegram.WebApp.BackButton.onClick(function () {
+    let inputElement = document.querySelector('input');
+    inputElement.value = '';
+    clearWeather();
+    togglePage();
+});
 
 // Function to toggle main TWA button
 function toggleMainButton() {
@@ -40,25 +30,18 @@ function toggleMainButton() {
     }
 };
 
-function setViewportData() {
-    var sizeEl = document.getElementById('viewport-params-size');
-    sizeEl.innerText = 'width: ' + window.innerWidth + ' x ' +
-        'height: ' + Telegram.WebApp.viewportStableHeight;
-
-    var expandEl = document.querySelector('#viewport-params-expand');
-    expandEl.innerText = 'Is Expanded: ' + (Telegram.WebApp.isExpanded ? 'true' : 'false');
+function toggleBackButton() {
+    if (Telegram.WebApp.BackButton.isVisible) {
+        Telegram.WebApp.BackButton.hide();
+    } else {
+        Telegram.WebApp.BackButton.show();
+    }
 }
 
 function togglePage() {
     toggleShowAutocomplete()
     toggleShowWeather()
+    toggleBackButton()
 }
 
-Telegram.WebApp.setHeaderColor('secondary_bg_color');
-
-setViewportData();
-Telegram.WebApp.onEvent('viewportChanged', setViewportData);
-
-// Telegram.WebApp.onEvent('themeChanged', function () {
-//     document.body.setAttribute('style', '--bg-color:' + Telegram.WebApp.backgroundColor);
-// });
+Telegram.WebApp.setHeaderColor('bg_color');

@@ -1,5 +1,6 @@
 .autocomplete-container {
     margin-bottom: 20px;
+    background-color: var(--tg-theme-secondary-bg-color);
     opacity: 1;
     transition: opacity 0.3s linear;
 }
@@ -24,6 +25,10 @@
     border-radius: 5px;
 
     font-size: 14px;
+}
+
+input::placeholder {
+    color: #000;
 }
 
 .autocomplete-items {
