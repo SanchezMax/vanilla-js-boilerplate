@@ -50,5 +50,3 @@ function togglePage() {
 }
 
 Telegram.WebApp.setHeaderColor('bg_color');
-
-Telegram.WebApp.showAlert(Telegram.WebApp.initDataUnsafe.chat.text.substr(0, 139));

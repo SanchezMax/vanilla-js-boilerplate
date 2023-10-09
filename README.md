@@ -1,5 +1,5 @@
 # Telegram Mini App - Weather Forecast
-This is a basic and straightforward Telegram Mini App(TMA) implemented using plain JavaScript, HTML, and CSS. This project is based on [this template](https://github.com/twa-dev/vanilla-js-boilerplate). It aims to provide a minimalistic example of how to create a simple TMA and launch it within Telegram without relying on complex build tools or bleeding-edge libraries. Also, this project uses API for searching cities and getting weather information.
+This is a basic and straightforward Telegram Mini App(TMA) implemented using plain JavaScript, HTML, and CSS. This project is based on [this template](https://github.com/twa-dev/vanilla-js-boilerplate). It aims to provide a minimalistic example of how to create a simple TMA and launch it within Telegram without relying on complex build tools or bleeding-edge libraries. Also, this project uses API for searching cities and getting weather information. Server side of this project is [here](https://github.com/SanchezMax/weather-tma-backend.git).
 
 - You can launch app with a bot menu button: https://t.me/justANiceTgBot
 - Deployment URL: https://sanchezmax.github.io/weather-tma/
@@ -41,7 +41,7 @@ Open project in your preferred code editor or IDE.
 3. Insert your API key from "Before installation" step 2 in weather.js (comment "Your OpenWeatherMap API key here").
 4. Make your changes
 5. Create your own GitHub repository, commit and push your updates.
-6. Go to your repository GitHub page and open Settings. Check the Pages tab and Build and deployment section. If GitHub Actions option was selected, assets should be deployed to Pages and there will be an URL like `https://<username>.github.io/weather-tma/`. You can copy this URL and use it with [BotFather](https://tg.me/BotFather) bot to create your very own TMA.
+6. Go to your repository GitHub page and open Settings. Check the Pages tab and Build and deployment section. If GitHub Actions option was selected, assets should be deployed to Pages and there will be an URL like `https://<username>.github.io/weather-tma/`. You can copy this URL and use it with [BotFather](https://t.me/BotFather) bot to create your very own TMA.
 
 ### Customization
 Feel free to customize this web app to suit your needs. You can modify the HTML, CSS, and JavaScript files as required.
