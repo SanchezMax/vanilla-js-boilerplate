@@ -17,10 +17,13 @@ function getWeather(city) {
     switch (units_select) {
         case 'metric':
             unit = 'C';
+            break;
         case 'imperial':
             unit = 'F';
+            break;
         case 'standard':
             unit = 'k';
+            break;
     }
 
     const url = `https://api.openweathermap.org/data/2.5/${forecast_select}?q=${inputVal}&appid=${apiKey}&units=${units_select}`;
@@ -53,21 +56,23 @@ function getWeather(city) {
                         `;
                         li.innerHTML = markup;
                         listOfCities.appendChild(li);
+                        break;
                     case 'forecast':
                         const { cnt, list, city } = data;
 
                         const fixed_top = document.getElementById('fixed-top')
-                        const div = document.createElement("div");
                         fixed_top.style.opacity = 1
+                        const h2 = document.createElement("h2");
+                        h2.classList.add("city-name");
+                        h2.style.margin = 0;
+                        h2.dataset.name = "${city.name},${city.country}";
                         // markup for fixed top bar
                         const top_markup = `
-                            <h2 class="city-name" style = "margin: 0;" data-name="${city.name},${city.country}">
-                                <span>${city.name}</span>
-                                <sup>${city.country}</sup>
-                            </h2>
+                            <span>${city.name}</span>
+                            <sup>${city.country}</sup>
                         `;
-                        div.innerHTML = top_markup
-                        fixed_top.appendChild(div)
+                        h2.innerHTML = top_markup
+                        fixed_top.appendChild(h2)
 
                         for (let index = 0; index < cnt; index++) {
                             const { dt, main, weather } = list[index]
@@ -88,6 +93,7 @@ function getWeather(city) {
                             li.innerHTML = markup;
                             listOfCities.appendChild(li);
                         }
+                        break;
                 }
             } else {
                 errorHandler()
