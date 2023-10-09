@@ -11,16 +11,11 @@ a {
     color: var(--tg-theme-link-color);
 }
 
-/* label {
-    font-size: large;
-} */
-
 div.select {
     padding: 15px 0;
 }
 
 .circled {
-    margin: 0 0 10px 0;
     height: 100px;
     width: 100px;
     background-color: rgba(128, 128, 128, 0.2);
@@ -28,4 +23,18 @@ div.select {
     align-items: center;
     border-radius: 50%;
     justify-content: center;
+}
+
+.fixed-top {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--tg-theme-bg-color);
+    padding: 10px;
+    margin-bottom: 20px;
+    z-index: 99;
+    opacity: 0;
+    text-align: center;
+    border-bottom: 1px solid var(--tg-theme-hint-color);
 }

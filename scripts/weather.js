@@ -77,7 +77,7 @@ function getWeather(city) {
                             <figure>
                                 <div class="circled">
                                     <img class="city-icon" src="${icon}" alt="${weather[0]["description"]}">
-                                </div
+                                </div>
                                 <figcaption>${weather[0]["description"]}</figcaption>
                             </figure>
                         `;
@@ -86,22 +86,31 @@ function getWeather(city) {
                         break;
                     case 'forecast':
                         const { cnt, list, city } = data;
+
+                        const fixed_top = document.getElementById('fixed-top')
+                        const div = document.createElement("div");
+                        fixed_top.style.opacity = 1
+                        const top_markup = `
+                            <h2 class="city-name" style = "margin: 0;" data-name="${city.name},${city.country}">
+                                <span>${city.name}</span>
+                                <sup>${city.country}</sup>
+                            </h2>
+                        `;
+                        div.innerHTML = top_markup
+                        fixed_top.appendChild(div)
+
                         for (let index = 0; index < cnt; index++) {
                             const { dt, main, weather } = list[index]
                             const icon = `https://openweathermap.org/img/wn/${weather[0]["icon"]}@2x.png`;
                             const li = document.createElement("li");
                             li.classList.add("city");
                             const markup = `
-                                <h2 class="city-name" data-name="${city.name},${city.country}">
-                                    <span>${city.name}</span>
-                                    <sup>${city.country}</sup>
-                                </h2>
-                                <h4 class="city-date">${timeConverter(dt)}</h4>
+                                ${timeConverter(dt)}
                                 <div class="city-temp">${Math.round(main.temp)}<sup>°${unit}</sup></div>
                                 <figure>
                                     <div class="circled">
                                         <img class="city-icon" src="${icon}" alt="${weather[0]["description"]}">
-                                    </div
+                                    </div>
                                     <figcaption>${weather[0]["description"]}</figcaption>
                                 </figure>
                             `;
@@ -116,6 +125,7 @@ function getWeather(city) {
                 let inputElement = document.querySelector('input');
                 inputElement.value = '';
                 clearWeather();
+                clearFixedTop();
                 togglePage();
             }
         })
@@ -127,8 +137,15 @@ function getWeather(city) {
 function clearWeather() {
     const listItems = listOfCities.querySelectorAll(".container .city");
     listItems.forEach(element => {
-        element.parentNode.removeChild(element)
+        element.parentNode.removeChild(element);
     });
+}
+
+function clearFixedTop() {
+    const fixed_top = document.getElementById('fixed-top')
+    const toRemove = document.querySelector('h2 .city-name')
+    fixed_top.style.opacity = 0;
+    fixed_top.removeChild(toRemove);
 }
 
 function toggleShowWeather() {
@@ -154,5 +171,10 @@ function timeConverter(timestamp) {
         day: "numeric",
       };
     var date = new Date(timestamp * 1000).toLocaleDateString("en-UK", options)
-    return time + '   ' + date
+    return `
+        <h2>
+            <span class="city-date">${date}</span>
+            <span class="city-time">${time}</span>
+        </h2>
+    `;
 }
