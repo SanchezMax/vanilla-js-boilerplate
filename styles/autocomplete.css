@@ -13,7 +13,7 @@
 }
 
 .input-container {
-    padding-top: 15px 0ыы;
+    padding-top: 15px 0;
     display: flex;
     position: relative;
     background-color: var(--tg-theme-bg-color);
@@ -29,7 +29,7 @@
     border: 1px solid var(--tg-theme-hint-color);
     border-radius: 5px;
 
-    font-size: 14px;
+    font-size: 16px;
 }
 
 .input-container input::placeholder {
