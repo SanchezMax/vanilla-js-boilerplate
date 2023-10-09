@@ -56,6 +56,12 @@ function getWeather(city) {
                         `;
                         li.innerHTML = markup;
                         listOfCities.appendChild(li);
+
+                        Telegram.WebApp.MainButton.onClick(function () {
+                            Telegram.WebApp.sendData(name)
+                            // Telegram.WebApp.showAlert('Main Button was clicked')
+                        });
+
                         break;
                     case 'forecast':
                         const { cnt, list, city } = data;
@@ -93,6 +99,12 @@ function getWeather(city) {
                             li.innerHTML = markup;
                             listOfCities.appendChild(li);
                         }
+
+                        Telegram.WebApp.MainButton.onClick(function () {
+                            Telegram.WebApp.sendData(city.name)
+                            // Telegram.WebApp.showAlert('Main Button was clicked')
+                        });
+
                         break;
                 }
             } else {

@@ -10,9 +10,10 @@ Telegram.WebApp.onEvent('themeChanged', function () {
 Telegram.WebApp.MainButton.setParams({
     text: 'Save city'
 });
-Telegram.WebApp.MainButton.onClick(function () {
-    // Telegram.WebApp.showAlert('Main Button was clicked')
-});
+// Telegram.WebApp.MainButton.onClick(function () {
+//     Telegram.WebApp.sendData('')
+//     // Telegram.WebApp.showAlert('Main Button was clicked')
+// });
 
 Telegram.WebApp.BackButton.onClick(function () {
     togglePage();
@@ -40,6 +41,7 @@ function toggleBackButton() {
 function togglePage() {
     toggleShowAutocomplete()
     toggleShowWeather()
+    toggleMainButton()
     toggleBackButton()
 }
 
