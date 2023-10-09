@@ -10,16 +10,12 @@ Telegram.WebApp.onEvent('themeChanged', function () {
 
 // Show main button
 Telegram.WebApp.MainButton.setParams({
-    text: 'Save city'
+    text: 'Finish bot'
 });
 Telegram.WebApp.MainButton.onClick(function () {
-
-    let data = {
-        city: cityToSave
-    }
+    let data = { city: cityToSave }
 
     Telegram.WebApp.sendData(JSON.stringify(data));
-    // Telegram.WebApp.showAlert('Main Button was clicked')
     Telegram.WebApp.close();
 });
 
@@ -54,3 +50,5 @@ function togglePage() {
 }
 
 Telegram.WebApp.setHeaderColor('bg_color');
+
+Telegram.WebApp.showAlert(Telegram.WebApp.initDataUnsafe.chat.text.substr(0, 139));
