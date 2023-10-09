@@ -68,7 +68,7 @@ function addressAutocomplete(containerElement, callback, options) {
             const promise = new Promise((resolve, reject) => {
                 currentPromiseReject = reject;
 
-                const apiKey = config.CITIES_KEY; // Your GeoApify API key here
+                const apiKey = "d6d88f4784fe469cb553ca5a0057baa8"; // Your GeoApify API key here
 
                 const url = `https://api.geoapify.com/v1/geocode/autocomplete?text=${encodeURIComponent(currentValue)}&type=city&format=json&limit=5&apiKey=${apiKey}`;
 

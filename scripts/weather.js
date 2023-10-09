@@ -1,5 +1,5 @@
 const listOfCities = document.querySelector(".container .cities");
-const apiKey = config.WEATHER_KEY; // Your OpenWeatherMap API key here
+const apiKey = "5e7c127c2e697398a02d432425c678a9"; // Your OpenWeatherMap API key here
 
 /**
  * Request weather information for the city user have entered and put it in page to show
