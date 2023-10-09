@@ -1,6 +1,8 @@
 // Init TWA
 Telegram.WebApp.ready();
 
+var cityToSave
+
 // Event occurs whenever theme settings are changed in the user's Telegram app (including switching to night mode).
 Telegram.WebApp.onEvent('themeChanged', function () {
     document.documentElement.className = Telegram.WebApp.colorScheme;
@@ -10,10 +12,11 @@ Telegram.WebApp.onEvent('themeChanged', function () {
 Telegram.WebApp.MainButton.setParams({
     text: 'Save city'
 });
-// Telegram.WebApp.MainButton.onClick(function () {
-//     Telegram.WebApp.sendData('')
-//     // Telegram.WebApp.showAlert('Main Button was clicked')
-// });
+Telegram.WebApp.MainButton.onClick(function () {
+    Telegram.WebApp.sendData(cityToSave);
+    // Telegram.WebApp.showAlert('Main Button was clicked')
+    Telegram.WebApp.close();
+});
 
 Telegram.WebApp.BackButton.onClick(function () {
     togglePage();

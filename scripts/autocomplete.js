@@ -228,9 +228,8 @@ function toggleShowAutocomplete() {
 }
 
 addressAutocomplete(document.getElementById("autocomplete-container"), (data) => {
-    console.log("Selected option: ");
-    console.log(data["city"]);
     getWeather(data["city"]);
+    cityToSave = data["city"]
     togglePage()
 }, {
     placeholder: "Please enter a city here"
