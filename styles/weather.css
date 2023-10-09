@@ -28,8 +28,8 @@ body .container {
 }
 
 .container {
-    width: 200%;
-    max-width: 600px;
+    width: 90%;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 0 15px;
     transition: opacity 0.3s linear;
@@ -40,16 +40,15 @@ body .container {
 }
 
 .container .cities {
-    display: block ruby;
+    display: grid;
     padding: 0%;
-    /* grid-gap: 32px 20px;
-    grid-template-columns: repeat(1, 1fr); */
+    grid-gap: 32px 20px;
+    grid-template-columns: repeat(4, 1fr);
 }
 
 .container .city {
     position: relative;
-    padding: 40px 15% 40px 10%;
-    margin-right: 15px;
+    padding: 40px 10%;
     border-radius: 20px;
     background: var(--tg-theme-secondary-bg-color);
     color: var(--tg-theme-hint-color);
@@ -99,4 +98,22 @@ body .container {
 .container .city-icon {
     width: 100px;
     height: 100px;
+}
+
+@media screen and (max-width: 1000px) {
+    .container .cities {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .container .cities {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .container .cities {
+        grid-template-columns: repeat(1, 1fr);
+    }
 }

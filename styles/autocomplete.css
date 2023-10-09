@@ -5,7 +5,7 @@
 }
 
 .autocomplete-container .select {
-    background-color: var(--tg-theme-secondary-bg-color);
+    background-color: var(--tg-theme-bg-color);
 }
 
 .autocomplete-container.hidden {
@@ -16,6 +16,7 @@
     padding-top: 15px;
     display: flex;
     position: relative;
+    background-color: var(--tg-theme-bg-color);
 }
 
 .input-container input {
