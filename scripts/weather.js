@@ -1,66 +1,35 @@
-/*SEARCH BY USING A CITY NAME (e.g. athens) OR A COMMA-SEPARATED CITY NAME ALONG WITH THE COUNTRY CODE (e.g. athens,gr)*/
 const listOfCities = document.querySelector(".container .cities");
-/*SUBSCRIBE HERE FOR API KEY: https://home.openweathermap.org/users/sign_up*/
-const apiKey = "5e7c127c2e697398a02d432425c678a9";
+const apiKey = config.WEATHER_KEY; // Your OpenWeatherMap API key here
+
+/**
+ * Request weather information for the city user have entered and put it in page to show
+ * @param {string} city - City from user autocomplete input
+ */
 
 function getWeather(city) {
     let inputVal = city
 
-    //check if there's already a city
-    const listItems = listOfCities.querySelectorAll(".container .city");
-    const listItemsArray = Array.from(listItems);
-
-    if (listItemsArray.length > 0) {
-        const filteredArray = listItemsArray.filter(el => {
-            let content = "";
-            //athens,gr
-            if (inputVal.includes(",")) {
-                //athens,grrrrrr->invalid country code, so we keep only the first part of inputVal
-                if (inputVal.split(",")[1].length > 2) {
-                    inputVal = inputVal.split(",")[0];
-                    content = el
-                        .querySelector(".city-name span")
-                        .textContent.toLowerCase();
-                } else {
-                    content = el.querySelector(".city-name").dataset.name.toLowerCase();
-                }
-            } else {
-                //athens
-                content = el.querySelector(".city-name span").textContent.toLowerCase();
-            }
-            return content == inputVal.toLowerCase();
-        });
-
-        if (filteredArray.length > 0) {
-            Telegram.WebApp.showAlert(`You already know the weather for ${filteredArray[0].querySelector(".city-name span").textContent
-                } ...otherwise be more specific by providing the country code as well 😉`);
-            return;
-        }
-    }
-
+    // get select fields
     const forecast_select = document.getElementById('forecast-select').value;
     const units_select = document.getElementById('units-select').value;
-    var unit;
+    let unit;
+    // select unit
     switch (units_select) {
         case 'metric':
             unit = 'C';
-            break;
         case 'imperial':
             unit = 'F';
-            break;
         case 'standard':
             unit = 'k';
-            break;
-        default:
-            break;
     }
 
-    //ajax here
     const url = `https://api.openweathermap.org/data/2.5/${forecast_select}?q=${inputVal}&appid=${apiKey}&units=${units_select}`;
 
+    // fetching data
     fetch(url)
         .then(response => response.json())
         .then(data => {
+            // checking response code
             if (data["cod"] == "200") {
                 switch (forecast_select) {
                     case 'weather':
@@ -68,6 +37,7 @@ function getWeather(city) {
                         const icon = `https://openweathermap.org/img/wn/${weather[0]["icon"]}@2x.png`;
                         const li = document.createElement("li");
                         li.classList.add("city");
+                        // markup for current weather
                         const markup = `
                             <h2 class="city-name" data-name="${name},${sys.country}">
                                 <span>${name}</span>
@@ -83,13 +53,13 @@ function getWeather(city) {
                         `;
                         li.innerHTML = markup;
                         listOfCities.appendChild(li);
-                        break;
                     case 'forecast':
                         const { cnt, list, city } = data;
 
                         const fixed_top = document.getElementById('fixed-top')
                         const div = document.createElement("div");
                         fixed_top.style.opacity = 1
+                        // markup for fixed top bar
                         const top_markup = `
                             <h2 class="city-name" style = "margin: 0;" data-name="${city.name},${city.country}">
                                 <span>${city.name}</span>
@@ -104,6 +74,7 @@ function getWeather(city) {
                             const icon = `https://openweathermap.org/img/wn/${weather[0]["icon"]}@2x.png`;
                             const li = document.createElement("li");
                             li.classList.add("city");
+                            // markup for 5 day forecast
                             const markup = `
                                 ${timeConverter(dt)}
                                 <div class="city-temp">${Math.round(main.temp)}<sup>°${unit}</sup></div>
@@ -117,22 +88,31 @@ function getWeather(city) {
                             li.innerHTML = markup;
                             listOfCities.appendChild(li);
                         }
-                    default:
-                        break;
                 }
             } else {
-                Telegram.WebApp.showAlert('Please search for a valid city 😩');
-                let inputElement = document.querySelector('input');
-                inputElement.value = '';
-                clearWeather();
-                clearFixedTop();
-                togglePage();
+                errorHandler()
             }
         })
         .catch(() => {
-            Telegram.WebApp.showAlert('Please search for a valid city 😩');
+            errorHandler()
         });
 }
+
+/**
+ * Show and alert, clear input field and return to first screen
+ */
+function errorHandler() {
+    Telegram.WebApp.showAlert('Unfortunately, the bot cannot find information about this city');
+    let inputElement = document.querySelector('input');
+    inputElement.value = '';
+    clearWeather();
+    clearFixedTop();
+    togglePage();
+}
+
+/**
+ * Remove all info from weather page
+ */
 
 function clearWeather() {
     const listItems = listOfCities.querySelectorAll(".container .city");
@@ -141,15 +121,23 @@ function clearWeather() {
     });
 }
 
+/**
+ * Remove info from element and make it transparent
+ */
+
 function clearFixedTop() {
     const fixed_top = document.getElementById('fixed-top')
-    const toRemove = document.querySelector('h2 .city-name')
+    const toRemove = document.querySelector('h2.city-name')
     fixed_top.style.opacity = 0;
     fixed_top.removeChild(toRemove);
 }
 
+/**
+ * Show or hide the weather page depending on current state
+ */
+
 function toggleShowWeather() {
-    var el = document.getElementById('container')
+    let el = document.getElementById('container')
     if (el.classList.contains('hidden')) {
         el.style.display = ''
         setTimeout(function () {
@@ -160,17 +148,24 @@ function toggleShowWeather() {
         setTimeout(function () {
             el.style.display = 'none'
             clearWeather();
+            clearFixedTop();
         }, 300);
     }
 }
 
+/**
+ * Converts a time to an inner HTML markup
+ * @param {number} timestamp - Current time in UNIX timestamp
+ * @returns {string} Inner HTML markup
+ */
+
 function timeConverter(timestamp) {
-    var time = new Date(timestamp * 1000).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })
+    let time = new Date(timestamp * 1000).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })
     const options = {
         month: "long",
         day: "numeric",
-      };
-    var date = new Date(timestamp * 1000).toLocaleDateString("en-UK", options)
+    };
+    let date = new Date(timestamp * 1000).toLocaleDateString("en-UK", options)
     return `
         <h2>
             <span class="city-date">${date}</span>

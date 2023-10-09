@@ -6,42 +6,15 @@
     <link href="./styles/autocomplete.css" rel="stylesheet" type="text/css">
     <link href="./styles/index.css" rel="stylesheet" type="text/css">
     <link href="./styles/weather.css" rel="stylesheet" type="text/css">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>TWA Sample App</title>
+    <title>Weather Forecast</title>
 </head>
 
 <body>
     <main>
-        <!-- <div align="center">
-            <a href="https://ton.org/"><img width="48" src="./assets/tapps.png" alt="logo of telegram web apps"></a>
-        </div>
-        <h1>Modals</h1>
-        <button onclick="Telegram.WebApp.showAlert('Hello World!');">Launch Alert</button>
-        <button onclick="showPopup();">Launch Popup</button>
-
-        <h1>Links</h1>
-        <ul>
-            <li>
-                <a href="javascript:Telegram.WebApp.openTelegramLink('https://t.me/trendingapps');">Open link within
-                    Telegram</a>
-            </li>
-            <li>
-                <a href="javascript:Telegram.WebApp.openLink('https://ton.org/');">Open link in external browser</a>
-            </li>
-            <li>
-                <a href="javascript:Telegram.WebApp.openLink('https://telegra.ph/api',{try_instant_view:true});">Open
-                    link inside Telegram webview</a>
-            </li>
-        </ul>
-
-        <h1>Buttons</h1>
-        <button onclick="Telegram.WebApp.expand();">Expand Webview</button>
-        <button onclick="toggleMainButton();">Toggle Main Button</button>
-
-        <h1>Textfield</h1> -->
-
         <div class="autocomplete-container" id="autocomplete-container">
             <div class="select">
                 <label for="forecast-select">Type of forecast:</label>
@@ -69,10 +42,10 @@
         </div>
 
     </main>
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    <script src="./scripts/autocomplete.js"></script>
-    <script src="./scripts/script.js"></script>
-    <script src="./scripts/weather.js"></script>
+    <script type='text/javascript' src='config.js'></script>
+    <script type='text/javascript' src="./scripts/autocomplete.js"></script>
+    <script type='text/javascript' src="./scripts/weather.js"></script>
+    <script type='text/javascript' src="./scripts/script.js"></script>
 </body>
 
 </html>

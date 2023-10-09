@@ -27,6 +27,7 @@ function toggleMainButton() {
     }
 };
 
+// Function to toggle back TWA button
 function toggleBackButton() {
     if (Telegram.WebApp.BackButton.isVisible) {
         Telegram.WebApp.BackButton.hide();
@@ -35,6 +36,7 @@ function toggleBackButton() {
     }
 }
 
+// Function to toggle page
 function togglePage() {
     toggleShowAutocomplete()
     toggleShowWeather()

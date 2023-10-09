@@ -27,10 +27,10 @@ function addressAutocomplete(containerElement, callback, options) {
     const DEBOUNCE_DELAY = 300;
 
     /* Current autocomplete items data */
-    var currentItems;
+    let currentItems;
 
-    var currentTimeout; // ?
-    var currentPromiseReject; // ?
+    let currentTimeout;
+    let currentPromiseReject;
 
     /* Process a user input: */
     inputElement.addEventListener("input", function (e) {
@@ -68,10 +68,9 @@ function addressAutocomplete(containerElement, callback, options) {
             const promise = new Promise((resolve, reject) => {
                 currentPromiseReject = reject;
 
-                // Get an API Key on https://myprojects.geoapify.com
-                const apiKey = "d6d88f4784fe469cb553ca5a0057baa8";
+                const apiKey = config.CITIES_KEY; // Your GeoApify API key here
 
-                var url = `https://api.geoapify.com/v1/geocode/autocomplete?text=${encodeURIComponent(currentValue)}&type=city&format=json&limit=5&apiKey=${apiKey}`;
+                const url = `https://api.geoapify.com/v1/geocode/autocomplete?text=${encodeURIComponent(currentValue)}&type=city&format=json&limit=5&apiKey=${apiKey}`;
 
                 fetch(url)
                     .then(response => {
@@ -125,9 +124,9 @@ function addressAutocomplete(containerElement, callback, options) {
 
     /* Add support for keyboard navigation */
     inputElement.addEventListener("keydown", function (e) {
-        var autocompleteItemsElement = containerElement.querySelector(".autocomplete-items");
+        let autocompleteItemsElement = containerElement.querySelector(".autocomplete-items");
         if (autocompleteItemsElement) {
-            var itemElements = autocompleteItemsElement.getElementsByTagName("div");
+            let itemElements = autocompleteItemsElement.getElementsByTagName("div");
             if (e.code == 40) {
                 e.preventDefault();
                 /*If the arrow DOWN key is pressed, increase the focusedItemIndex variable:*/
@@ -151,7 +150,7 @@ function addressAutocomplete(containerElement, callback, options) {
         } else {
             if (e.code == 40) {
                 /* Open dropdown list again */
-                var event = new Event('input', { bubbles: true, cancelable: true });
+                let event = new Event('input', { bubbles: true, cancelable: true });
                 inputElement.dispatchEvent(event);
             }
         }
@@ -160,7 +159,7 @@ function addressAutocomplete(containerElement, callback, options) {
     function setActive(items, index) {
         if (!items || !items.length) return false;
 
-        for (var i = 0; i < items.length; i++) {
+        for (let i = 0; i < items.length; i++) {
             items[i].classList.remove("autocomplete-active");
         }
 
@@ -173,7 +172,7 @@ function addressAutocomplete(containerElement, callback, options) {
     }
 
     function closeDropDownList() {
-        var autocompleteItemsElement = inputContainerElement.querySelector(".autocomplete-items");
+        let autocompleteItemsElement = inputContainerElement.querySelector(".autocomplete-items");
         if (autocompleteItemsElement) {
             inputContainerElement.removeChild(autocompleteItemsElement);
         }
@@ -199,14 +198,18 @@ function addressAutocomplete(containerElement, callback, options) {
             closeDropDownList();
         } else if (!containerElement.querySelector(".autocomplete-items")) {
             // open dropdown list again
-            var event = new Event('input', { bubbles: true, cancelable: true });
+            let event = new Event('input', { bubbles: true, cancelable: true });
             inputElement.dispatchEvent(event);
         }
     });
 }
 
+/**
+ * Show or hide the main page depending on current state
+ */
+
 function toggleShowAutocomplete() {
-    var el = document.getElementById('autocomplete-container')
+    let el = document.getElementById('autocomplete-container')
     if (el.classList.contains('hidden')) {
         let inputElement = document.querySelector('input');
         inputElement.value = '';

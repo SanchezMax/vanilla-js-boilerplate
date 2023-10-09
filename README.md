@@ -1,16 +1,8 @@
-<p align="center">
-  <br>
-  <img width="240" src="./assets/tapps.png" alt="logo of telegram web apps">
-  <br>
-  <br>
-</p>
+# Telegram Mini App - Weather Forecast
+This is a basic and straightforward Telegram Mini App(TMA) implemented using plain JavaScript, HTML, and CSS. This project is based on [this template](https://github.com/twa-dev/vanilla-js-boilerplate). It aims to provide a minimalistic example of how to create a simple TMA and launch it within Telegram without relying on complex build tools or bleeding-edge libraries. Also, this project uses API for searching cities and getting weather information.
 
-# Telegram Web Apps Basic Example
-This is a basic and straightforward Telegram Web App(TWA) implemented using plain JavaScript, HTML, and CSS. This project aims to provide a minimalistic example of how to create a simple TWA and launch it within Telegram without relying on complex build tools or bleeding-edge libraries.
-
-- App is available via direct link: https://t.me/simple_telegram_web_app_bot/app
-- Or you can launch app with a bot menu button: https://t.me/simple_telegram_web_app_bot
-- Deployment URL: [https://twa-dev.github.io/simple-telegram-web-app/](https://twa-dev.github.io/vanilla-js-boilerplate/)
+- You can launch app with a bot menu button: https://t.me/justANiceTgBot
+- Deployment URL: https://sanchezmax.github.io/weather-tma/
 
 ## Features
 - Minimalistic user interface.
@@ -23,25 +15,33 @@ This is a basic and straightforward Telegram Web App(TWA) implemented using plai
 
 To run this example, you'll need a modern web browser with JavaScript enabled.
 
+### Before installation
+
+1. Get your API key for cities autocompletion on https://myprojects.geoapify.com
+
+2. Get your API key for getting weather information on https://openweathermap.org/
+
 ### Installation
 
 1. Clone this repository to your local machine:
 
    ```bash
-   git clone https://github.com/twa-dev/vanilla-js-boilerplate
+   git clone https://github.com/SanchezMax/weather-tma.git
 
 2. Navigate to the project directory:
 
 	```bash
-	cd vanilla-js-boilerplate
+	cd weather-tma
 
-Open index.html in your preferred code editor or IDE.
+Open project in your preferred code editor or IDE.
 
 ### Usage
-1. Open index.html in your preferred code editor or IDE.
-2. Make your changes
-3. Create your own GitHub repository, commit and push your updates.
-4. Go to your repository GitHub page and open Settings. Check the Pages tab and Build and deployment section. If GitHub Actions option was selected, assets should be deployed to Pages and there will be an URL like `https://<username>.github.io/simple-telegram-web-app/`. You can copy this URL and use it with [BotFather](https://tg.me/BotFather) bot to create your very own TWA.
+1. Open project in your preferred code editor or IDE.
+2. Insert your API key from "Before installation" step 1 in autocomplete.js (comment "Your GeoApify API key here").
+3. Insert your API key from "Before installation" step 2 in weather.js (comment "Your OpenWeatherMap API key here").
+4. Make your changes
+5. Create your own GitHub repository, commit and push your updates.
+6. Go to your repository GitHub page and open Settings. Check the Pages tab and Build and deployment section. If GitHub Actions option was selected, assets should be deployed to Pages and there will be an URL like `https://<username>.github.io/weather-tma/`. You can copy this URL and use it with [BotFather](https://tg.me/BotFather) bot to create your very own TMA.
 
 ### Customization
 Feel free to customize this web app to suit your needs. You can modify the HTML, CSS, and JavaScript files as required.

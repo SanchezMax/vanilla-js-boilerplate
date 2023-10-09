@@ -15,6 +15,7 @@ div.select {
     padding: 15px 0;
 }
 
+/* circle background for weather icon */
 .circled {
     height: 100px;
     width: 100px;
@@ -25,6 +26,7 @@ div.select {
     justify-content: center;
 }
 
+/* fixed top bar */
 .fixed-top {
     position: fixed;
     top: 0;
