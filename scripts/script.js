@@ -13,7 +13,12 @@ Telegram.WebApp.MainButton.setParams({
     text: 'Save city'
 });
 Telegram.WebApp.MainButton.onClick(function () {
-    Telegram.WebApp.sendData(cityToSave);
+
+    let data = {
+        city: cityToSave
+    }
+
+    Telegram.WebApp.sendData(JSON.stringify(data));
     // Telegram.WebApp.showAlert('Main Button was clicked')
     Telegram.WebApp.close();
 });
