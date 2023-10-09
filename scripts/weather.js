@@ -60,6 +60,7 @@ function getWeather(city) {
                         Telegram.WebApp.MainButton.onClick(function () {
                             Telegram.WebApp.sendData(name)
                             // Telegram.WebApp.showAlert('Main Button was clicked')
+                            Telegram.WebApp.close()
                         });
 
                         break;
@@ -103,6 +104,7 @@ function getWeather(city) {
                         Telegram.WebApp.MainButton.onClick(function () {
                             Telegram.WebApp.sendData(city.name)
                             // Telegram.WebApp.showAlert('Main Button was clicked')
+                            Telegram.WebApp.close()
                         });
 
                         break;
