@@ -230,5 +230,5 @@ addressAutocomplete(document.getElementById("autocomplete-container"), (data) =>
     getWeather(data["city"]);
     togglePage()
 }, {
-    placeholder: "Enter an address here"
+    placeholder: "Please enter a city here"
 });
