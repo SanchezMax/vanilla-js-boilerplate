@@ -40,3 +40,8 @@ div.select {
     text-align: center;
     border-bottom: 1px solid var(--tg-theme-hint-color);
 }
+
+.header {
+    background-color: var(--tg-theme-bg-color);
+    text-align: center;
+}
