@@ -24,7 +24,7 @@ ul {
 
 body .container {
     font: 1rem/1.3 "Roboto", sans-serif;
-    background: var(--tg-theme-bg-color);
+    /* background: var(--tg-theme-bg-color); */
     color: var(--tg-theme-text-color);
 }
 

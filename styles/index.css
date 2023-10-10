@@ -42,6 +42,6 @@ div.select {
 }
 
 .header {
-    background-color: var(--tg-theme-bg-color);
+    /* background-color: var(--tg-theme-bg-color); */
     text-align: center;
 }
