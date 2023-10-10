@@ -41,6 +41,7 @@
     top: calc(100% + 2px);
     left: 0;
     right: 0;
+    margin-top: -5px;
 
     border: 1px solid var(--tg-theme-hint-color);
     border-radius: 5px;

@@ -232,5 +232,5 @@ addressAutocomplete(document.getElementById("autocomplete-container"), (data) =>
     cityToSave = data["city"]
     togglePage()
 }, {
-    placeholder: "Please enter a city here"
+    placeholder: "Start typing the city name"
 });
